@@ -70,7 +70,7 @@ export const OPTIONS: NextAuthOptions = {
         token.id = profile?.id;
       }
 
-      console.log({ token });
+      // console.log({ token });
 
       return token;
     },
@@ -90,6 +90,8 @@ export const OPTIONS: NextAuthOptions = {
     },
     async signIn({ profile, account }) {
       try {
+        await connectToDB();
+
         // restrict access to people with
         // verified accounts at a particular domain
         // if (account?.provider === "google") {
@@ -99,8 +101,6 @@ export const OPTIONS: NextAuthOptions = {
         //     profile.email?.endsWith("@gmail.com")
         //   );
         // }
-
-        await connectToDB();
 
         const userExists = await User.findOne({
           email: profile?.email
