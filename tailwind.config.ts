@@ -14,6 +14,9 @@ const config: Config = {
       },
       colors: {
         "primary-orange": "#FF5722"
+      },
+      container: {
+        center: true
       }
     }
   },

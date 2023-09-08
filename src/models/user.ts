@@ -20,6 +20,6 @@ const userSchema = new Schema(
 
 export type MongoUser = InferSchemaType<typeof userSchema>;
 
-const userModel = models.User || model("User", userSchema);
+const User = models.User || model("User", userSchema);
 
-export default userModel;
+export default User;

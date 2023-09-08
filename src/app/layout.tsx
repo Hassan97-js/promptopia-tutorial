@@ -29,7 +29,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           <div className="gradient" />
         </div>
         <AuthProvider>
-          <main className="app">
+          <main className="app | container">
             <Navbar user={session?.user} providers={providersValues} />
             {children}
           </main>

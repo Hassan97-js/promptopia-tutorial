@@ -1,17 +1,27 @@
 import type { ChangeEvent, FormEvent } from "react";
 
-export interface PromptPost {
-  prompt: string;
+export interface Prompt {
+  text: string;
   tag: string;
+}
+
+export interface ApiPrompt extends Prompt {
+  _id: string;
+  creator: {
+    _id: string;
+    email: string;
+    image: string;
+    username: string;
+  };
 }
 
 export interface PromptFormProps {
   actionType: string;
-  post: PromptPost;
+  prompt: Prompt;
   submitting: boolean;
-  onPromptPostChange: (
+  onPromptChange: (
     e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
-    update: "tag" | "prompt"
+    update: "tag" | "text"
   ) => void;
-  onPromptPostCreate: (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  onPromptCreate: (e: FormEvent<HTMLFormElement>) => Promise<void>;
 }

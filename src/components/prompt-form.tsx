@@ -3,10 +3,10 @@ import { PromptFormProps } from "@/types/create-prompt";
 
 const PromptForm = ({
   actionType,
-  post,
+  prompt,
   submitting,
-  onPromptPostCreate,
-  onPromptPostChange
+  onPromptCreate,
+  onPromptChange
 }: PromptFormProps) => {
   return (
     <section className="flex-start | w-full max-w-full flex-col">
@@ -17,10 +17,10 @@ const PromptForm = ({
         {actionType} and share amazing prompts with the world, and let your
         imagination run wild with any AI-powered platform.
       </p>
-      
+
       <form
         className="glassmorphism | mt-10 w-full max-w-2xl flex flex-col gap-7"
-        onSubmit={onPromptPostCreate}>
+        onSubmit={onPromptCreate}>
         <label htmlFor="">
           <span className="font-satoshi | font-semibold text-base text-gray-700">
             Your AI Prompt
@@ -28,8 +28,8 @@ const PromptForm = ({
 
           <textarea
             className="form-textarea"
-            value={post.prompt}
-            onChange={(e) => onPromptPostChange(e, "prompt")}
+            value={prompt.text}
+            onChange={(e) => onPromptChange(e, "text")}
             placeholder="Write your prompt here..."
             required
           />
@@ -42,8 +42,8 @@ const PromptForm = ({
 
           <input
             className="form-input"
-            value={post.tag}
-            onChange={(e) => onPromptPostChange(e, "tag")}
+            value={prompt.tag}
+            onChange={(e) => onPromptChange(e, "tag")}
             placeholder="#tag"
             required
           />
@@ -54,10 +54,10 @@ const PromptForm = ({
             Cancel
           </Link>
           <button
-            className="px-5 py-1.5 text-sm font-semibold bg-primary-orange rounded-full text-white"
+            className="px-[2em] py-[0.75em] text-sm font-semibold bg-blue-800 hover:bg-blue-700 transition-colors rounded-full text-white leading-none"
             type="submit"
             disabled={submitting}>
-            {submitting ? `${actionType}...` : actionType}
+            {submitting ? `${actionType}ing...` : actionType}
           </button>
         </div>
       </form>
