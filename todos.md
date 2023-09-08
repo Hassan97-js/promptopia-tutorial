@@ -1,3 +1,0 @@
-# Todos
-
-- Continue the tutorial
