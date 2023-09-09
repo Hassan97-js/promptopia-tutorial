@@ -3,7 +3,7 @@ import { connectToDB } from "@/utils/database";
 
 import Prompt from "@/models/prompt";
 import type { Document } from "mongoose";
-import { MongoPrompt } from "@/models/prompt";
+import type { MongoPrompt } from "@/models/prompt";
 
 export const GET = async (_req: NextRequest, _res: Response) => {
   try {

@@ -22,7 +22,7 @@ const PromptForm = ({
         className="glassmorphism | mt-10 w-full max-w-2xl flex flex-col gap-7"
         onSubmit={onPromptCreate}>
         <label htmlFor="">
-          <span className="font-satoshi | font-semibold text-base text-gray-700">
+          <span className="font-semibold text-base text-slate-700">
             Your AI Prompt
           </span>
 
@@ -35,7 +35,7 @@ const PromptForm = ({
           />
         </label>
         <label htmlFor="">
-          <p className="font-satoshi | font-semibold text-base text-gray-700">
+          <p className="font-semibold text-base text-slate-700">
             Tag
             <span className="font-normal"> (#product, #webdevelopment, #idea)</span>
           </p>
@@ -50,7 +50,7 @@ const PromptForm = ({
         </label>
 
         <div className="flex-end | mx-3 mb-5 gap-4">
-          <Link className="text-gray-500 text-sm" href="/">
+          <Link className="text-slate-500 text-sm" href="/">
             Cancel
           </Link>
           <button

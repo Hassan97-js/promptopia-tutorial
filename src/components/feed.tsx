@@ -26,18 +26,18 @@ const Feed = () => {
 
   console.log(prompts);
 
-  const handleTagClick = (e: MouseEvent<HTMLElement, MouseEvent>) => {};
+  const handleTagClick = (e: MouseEvent<HTMLButtonElement>, tag: string) => {};
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {};
 
   useEffect(() => {
     const fetchPrompts = async () => {
-      const fetchPromptHeaders = new Headers();
-      fetchPromptHeaders.append("Content-Type", "application/json");
+      const fetchPromptsHeaders = new Headers();
+      fetchPromptsHeaders.append("Content-Type", "application/json");
 
-      const fetchPromptRequest = new Request("/api/prompt/all");
+      const fetchPromptsRequest = new Request("/api/prompt/all");
 
-      const response = await fetch(fetchPromptRequest);
+      const response = await fetch(fetchPromptsRequest);
       const data = await response.json();
 
       setPrompts(data);

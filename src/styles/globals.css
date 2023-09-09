@@ -92,7 +92,7 @@
 }
 
 .head-text {
-  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-slate-900 sm:text-6xl;
+  @apply mt-5 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.15] text-slate-900;
 }
 
 .orange-gradient {
@@ -112,7 +112,7 @@
 }
 
 .search-input {
-  @apply block w-full max-w-xl rounded-md border border-slate-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-slate-900 focus:outline-none focus:ring-0;
+  @apply block w-full max-w-xl rounded-md border border-slate-200 bg-white py-2.5 pl-5 pr-12 text-sm shadow-lg font-medium focus:border-slate-900 focus:outline-none focus:ring-0;
 }
 
 .copy-btn {
@@ -124,11 +124,15 @@
 }
 
 .prompt-layout {
-  @apply py-8 flex flex-col justify-center items-center lg:flex-row lg:justify-start lg:items-start gap-8 sm:gap-8;
+  @apply py-8 flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:justify-center lg:items-center gap-8 sm:gap-8;
 }
 
 .prompt-layout > * {
-  @apply flex-1 min-h-[8.125rem] max-h-[9.375rem];
+  @apply flex-1 min-h-[10.625rem] max-h-[11.875rem];
+}
+
+.prompt-card {
+  @apply flex flex-col break-inside-avoid rounded-lg border border-slate-300 bg-white/20 bg-clip-padding backdrop-blur-lg backdrop-filter max-w-md w-full h-fit;
 }
 
 /* Feed Component */
@@ -147,7 +151,7 @@
 
 /* Nav Component */
 .logo-text {
-  @apply max-sm:hidden font-satoshi font-semibold text-lg text-slate-900 tracking-wide;
+  @apply max-sm:hidden font-semibold text-lg text-slate-900 tracking-wide;
 }
 
 .dropdown {
@@ -159,9 +163,6 @@
 }
 
 /* PromptCard Component */
-.prompt-card {
-  @apply flex-1 break-inside-avoid rounded-lg border border-slate-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[22.5rem] w-full h-fit;
-}
 
 .flex-center {
   @apply flex justify-center items-center;

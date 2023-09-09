@@ -24,7 +24,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <html lang="en">
-      <body className="min-h-screen text-slate-900">
+      <body className="min-h-screen text-slate-900 font-satoshi">
         <div className="gradient-wrapper">
           <div className="gradient" />
         </div>

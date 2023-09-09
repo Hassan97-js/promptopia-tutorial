@@ -8,17 +8,70 @@ import { usePathname, useRouter } from "next/navigation";
 import type { PromptCardProps } from "@/types/prompt-feed";
 
 const PromptCard = ({ prompt, onTagClick }: PromptCardProps) => {
+  const [copiedText, setCopiedText] = useState("");
+
+  const handlePromptCopy = async () => {
+    try {
+      setCopiedText(prompt.text);
+      await navigator.clipboard.writeText(prompt.text);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setTimeout(() => {
+        setCopiedText("");
+      }, 3000);
+    }
+  };
+
   return (
-    <div className="prompt-card">
-      <div className="flex justify-between items-start gap-5">
+    <div className="prompt-card | relative">
+      <button className="flex flex-1 justify-between items-center gap-5 px-6">
+        <div className="flex gap-4">
+          <Image
+            className="rounded-full object-contain w-auto h-auto"
+            src={prompt.creator.image}
+            alt="User image"
+            width={40}
+            height={40}
+          />
+
+          <div className="flex flex-col">
+            <h3 className="font-semibold text-slate-900 text-left">
+              {prompt.creator.username}
+            </h3>
+            <p className="font-inter | text-sm text-slate-500">
+              {prompt.creator.email}
+            </p>
+          </div>
+        </div>
+      </button>
+
+      <p className="px-6 pb-4 text-sm text-slate-700 truncate max-w-prose">
+        {prompt.text}
+      </p>
+      <button
+        className="blue-gradient | text-left px-6 pb-4 font-inter text-sm text-slate-500 truncate"
+        onClick={(e) => {
+          onTagClick(e, prompt.tag);
+        }}>
+        {prompt.tag}
+      </button>
+      {/* e: MouseEvent<HTMLButtonElement, MouseEvent> */}
+      <button
+        className="copy-btn absolute right-0 mt-3 mr-3"
+        onClick={handlePromptCopy}>
         <Image
-          className="rounded-full object-contain"
-          src={prompt.creator.image}
-          alt="User image"
-          width={40}
-          height={40}
+          className="w-auto h-auto"
+          src={
+            copiedText && copiedText === prompt.text
+              ? "/assets/icons/tick.svg"
+              : "/assets/icons/copy.svg"
+          }
+          width={12}
+          height={12}
+          alt="Copy Button"
         />
-      </div>
+      </button>
     </div>
   );
 };

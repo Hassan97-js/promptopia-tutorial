@@ -3,10 +3,10 @@ import type { Prompt, ApiPrompt } from "./create-prompt";
 
 export interface PromptCardListProps {
   prompts: ApiPrompt[];
-  onTagClick: (e: MouseEvent<HTMLElement, MouseEvent>) => void;
+  onTagClick: (e: MouseEvent<HTMLButtonElement>, tag: string) => void;
 }
 
 export interface PromptCardProps {
   prompt: ApiPrompt;
-  onTagClick: (e: MouseEvent<HTMLElement, MouseEvent>) => void;
+  onTagClick: (e: MouseEvent<HTMLButtonElement>, tag: string) => void;
 }
