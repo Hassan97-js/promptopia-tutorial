@@ -1,6 +1,7 @@
-import { UserProfile } from "@/types/profile.types";
-import { ProfileCardListProps } from "@/types/prompt-feed";
 import PromptCard from "./prompt-card";
+
+import type { ProfileCardListProps } from "@/types/prompt.types";
+import type { UserProfile } from "@/types/profile.types";
 
 const ProfileCardList = ({
   prompts,

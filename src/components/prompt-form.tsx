@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { PromptFormProps } from "@/types/prompt.types";
+
+import type { PromptFormProps } from "@/types/prompt.types";
 
 const PromptForm = ({
   actionType,

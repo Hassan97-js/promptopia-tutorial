@@ -1,11 +1,9 @@
-"use client";
-
 import Image from "next/image";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
-import type { PromptCardProps } from "@/types/prompt-feed";
+import type { PromptCardProps } from "@/types/prompt.types";
 
 const PromptCard = ({
   prompt,
@@ -18,7 +16,6 @@ const PromptCard = ({
   const { data: session } = useSession();
 
   const pathName = usePathname();
-  const router = useRouter();
 
   const handlePromptCopy = async () => {
     try {

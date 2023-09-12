@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import PromptForm from "@/components/prompt-form";
-import { Prompt } from "@/types/prompt.types";
+import type { Prompt } from "@/types/prompt.types";
 
 const CreatePrompt = () => {
   const [submitting, setSubmitting] = useState(false);

@@ -23,8 +23,6 @@ const Feed = () => {
   const [prompts, setPrompts] = useState<ApiPrompt[]>([]);
   const [searchText, setSearchText] = useState("");
 
-  console.log(prompts);
-
   const handleTagClick = (e: MouseEvent<HTMLButtonElement>, tag: string) => {
     console.log(tag);
   };

@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import DesktopMenu from "@/components/global/desktop-menu";
 import MobileMenu from "@/components/global/mobile-menu";
+
 import type { NavbarProps } from "@/types/navbar.types";
 
 const Navbar = ({ user, providers }: NavbarProps) => {
@@ -19,7 +20,7 @@ const Navbar = ({ user, providers }: NavbarProps) => {
   };
 
   return (
-    <nav className="flex-between | w-full mb-16 pt-6">
+    <nav className="flex-between | w-full mb-24 pt-6">
       <Link href="/" className="flex-center | flex gap-2">
         {/* <Image
           className="object-contain"
