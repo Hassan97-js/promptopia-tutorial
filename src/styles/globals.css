@@ -150,7 +150,6 @@
 }
 
 /* Nav Component */
-
 .dropdown {
   @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[13.125rem] flex flex-col gap-2 justify-end items-end;
 }

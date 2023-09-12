@@ -1,16 +1,16 @@
-import type { HydratedDocument } from "mongoose";
-
 import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import type { NextAuthOptions } from "next-auth";
+
+import User from "@/models/user";
 
 import { connectToDB } from "@/utils/database";
 
-import User from "@/models/user";
+import type { HydratedDocument } from "mongoose";
+import type { NextAuthOptions } from "next-auth";
 import type { MongoUser } from "@/models/user";
 
-export const OPTIONS: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID!,
@@ -50,18 +50,8 @@ export const OPTIONS: NextAuthOptions = {
         await connectToDB();
 
         if (!profile?.email_verified) {
-          return false;
+          throw Error("Sorry, your email is not verified by the provider!");
         }
-
-        // restrict access to people with
-        // verified accounts at a particular domain
-        // if (account?.provider === "google") {
-        //   return !!(
-        //     profile &&
-        //     profile.email_verified &&
-        //     profile.email?.endsWith("@gmail.com")
-        //   );
-        // }
 
         const userExists = await User.findOne({
           email: user?.email
@@ -89,6 +79,6 @@ export const OPTIONS: NextAuthOptions = {
   }
 };
 
-const handler = NextAuth(OPTIONS);
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

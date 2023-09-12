@@ -1,5 +1,32 @@
-import type { MouseEvent } from "react";
-import type { Prompt, ApiPrompt } from "./create-prompt";
+import type { ChangeEvent, FormEvent, MouseEvent } from "react";
+
+export interface Prompt {
+  text: string;
+  tag: string;
+}
+
+export interface ApiPrompt extends Prompt {
+  _id: string;
+  creator: {
+    _id: string;
+    email: string;
+    image: string;
+    username: string;
+  };
+}
+
+export interface PromptFormProps {
+  actionType: string;
+  prompt: Prompt;
+  submitting: boolean;
+  onPromptChange?: (
+    e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+    update: "tag" | "text"
+  ) => void;
+  onPromptCreate?: (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  onPromptUpdate?: (e: FormEvent<HTMLFormElement>) => Promise<void>;
+}
+
 
 export interface PromptCardProps {
   prompt: ApiPrompt;

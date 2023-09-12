@@ -1,11 +1,11 @@
 import { getServerSession } from "next-auth/next";
 
-import { OPTIONS } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 import Feed from "@/components/feed";
 
 const Home = async () => {
-  const session = await getServerSession(OPTIONS);
+  const session = await getServerSession(authOptions);
 
   return (
     <section className="w-full flex-center flex-col">
@@ -18,7 +18,7 @@ const Home = async () => {
         create and share creative prompts
       </p>
 
-      {session ? <Feed /> : <h1 className="text-5xl">You are not logged in!</h1>}
+      {session ? <Feed /> : null}
     </section>
   );
 };

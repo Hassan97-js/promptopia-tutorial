@@ -1,4 +1,4 @@
-import { UserProfile } from "@/types/profile";
+import { UserProfile } from "@/types/profile.types";
 import { ProfileCardListProps } from "@/types/prompt-feed";
 import PromptCard from "./prompt-card";
 

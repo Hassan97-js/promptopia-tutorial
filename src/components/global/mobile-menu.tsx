@@ -1,23 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { ClientSafeProvider, signIn, signOut } from "next-auth/react";
-
-type Props = {
-  onToggleDropdown: () => void;
-  onCloseDropdown: () => void;
-  hasToggleDropdown: boolean;
-  providers: ClientSafeProvider[] | null;
-  user: User;
-};
+import { signIn, signOut } from "next-auth/react";
+import type { MobileMenuProps } from "@/types/navbar.types";
 
 const MobileMenu = ({
   user,
   providers,
   onToggleDropdown,
   onCloseDropdown,
-  hasToggleDropdown
-}: Props) => {
+  toggleDropdown
+}: MobileMenuProps) => {
   const isLoggedIn = !!user;
   const hasProviders = !!providers;
 
@@ -35,7 +28,7 @@ const MobileMenu = ({
             />
           </button>
 
-          {hasToggleDropdown ? (
+          {toggleDropdown ? (
             <div className="dropdown">
               <Link
                 href="/profile"
@@ -66,12 +59,10 @@ const MobileMenu = ({
           <button
             className="btn btn-black"
             type="button"
-            onClick={() => {
-              onToggleDropdown;
-            }}>
+            onClick={() => onToggleDropdown()}>
             Toggle Dropdown
           </button>
-          {hasToggleDropdown && hasProviders ? (
+          {toggleDropdown && hasProviders ? (
             <div className="dropdown">
               {providers.map((p) => {
                 return (

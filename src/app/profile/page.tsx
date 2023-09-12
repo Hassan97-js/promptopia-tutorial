@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 import UserProfile from "@/components/user-profile";
-import type { ApiPrompt } from "@/types/create-prompt";
+import type { ApiPrompt } from "@/types/prompt.types";
 
 const Profile = () => {
   const [userPrompts, setUserPrompts] = useState<ApiPrompt[]>([]);

@@ -2,14 +2,10 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { ClientSafeProvider, signIn, signOut } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
+import type { DesktopMenuProps } from "@/types/navbar.types";
 
-type Props = {
-  providers: ClientSafeProvider[] | null;
-  user: User;
-};
-
-const DesktopMenu = ({ providers, user }: Props) => {
+const DesktopMenu = ({ providers, user }: DesktopMenuProps) => {
   const [signinResponseError, setSigninResponseError] = useState<
     string | null | undefined
   >();
@@ -17,7 +13,9 @@ const DesktopMenu = ({ providers, user }: Props) => {
   const hasProviders = !!providers;
   const isLoggedIn = !!user;
 
-  signinResponseError && alert(signinResponseError);
+  if (signinResponseError) {
+    alert(signinResponseError);
+  }
 
   return (
     <div className="sm:flex hidden">
@@ -28,9 +26,7 @@ const DesktopMenu = ({ providers, user }: Props) => {
               <button
                 key={p.id}
                 type="button"
-                onClick={() => {
-                  signIn(p.id);
-                }}
+                onClick={() => signIn(p.id)}
                 className="btn btn-black">
                 {p.name === "Credentials" ? "Sign in" : `Sign in With ${p.name}`}
               </button>

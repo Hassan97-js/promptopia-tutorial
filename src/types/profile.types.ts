@@ -1,4 +1,4 @@
-import { ApiPrompt } from "./create-prompt";
+import { ApiPrompt } from "./prompt.types";
 
 export type UserProfile = {
   name: string | null | undefined;

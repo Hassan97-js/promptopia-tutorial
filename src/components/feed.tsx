@@ -5,8 +5,7 @@ import { useState, useEffect } from "react";
 import PromptCard from "@/components/prompt-card";
 
 import type { ChangeEvent, MouseEvent } from "react";
-import type { PromptCardListProps } from "@/types/prompt-feed";
-import type { ApiPrompt } from "@/types/create-prompt";
+import type { ApiPrompt, PromptCardListProps } from "@/types/prompt.types";
 
 const PromptCardList = ({ prompts, onTagClick }: PromptCardListProps) => {
   return (

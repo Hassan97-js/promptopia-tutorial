@@ -2,27 +2,20 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-
-import type { ClientSafeProvider } from "next-auth/react";
 
 import DesktopMenu from "@/components/global/desktop-menu";
 import MobileMenu from "@/components/global/mobile-menu";
+import type { NavbarProps } from "@/types/navbar.types";
 
-type Props = {
-  user: User;
-  providers: ClientSafeProvider[] | null;
-};
+const Navbar = ({ user, providers }: NavbarProps) => {
+  const [toggleDropdown, setToggleDropdown] = useState(false);
 
-const Navbar = ({ user, providers }: Props) => {
-  const [hasToggleDropdown, setHasToggleDropdown] = useState(false);
-
-  const handleToggleDropdown = () => {
-    setHasToggleDropdown((prevState) => !prevState);
+  const handleDropdownToggle = () => {
+    setToggleDropdown((prevState) => !prevState);
   };
 
-  const handleCloseDropdown = () => {
-    setHasToggleDropdown(false);
+  const handleDropdownClose = () => {
+    setToggleDropdown(false);
   };
 
   return (
@@ -40,16 +33,14 @@ const Navbar = ({ user, providers }: Props) => {
         </span>
       </Link>
 
-      {/* Desktop Navigation */}
       <DesktopMenu providers={providers} user={user} />
 
-      {/* Mobile Navigation */}
       <MobileMenu
         user={user}
-        onCloseDropdown={handleCloseDropdown}
-        onToggleDropdown={handleToggleDropdown}
+        onCloseDropdown={handleDropdownClose}
+        onToggleDropdown={handleDropdownToggle}
         providers={providers}
-        hasToggleDropdown={hasToggleDropdown}
+        toggleDropdown={toggleDropdown}
       />
     </nav>
   );
