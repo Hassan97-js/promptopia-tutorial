@@ -19,9 +19,10 @@ export interface PromptFormProps {
   actionType: string;
   prompt: Prompt;
   submitting: boolean;
-  onPromptChange: (
+  onPromptChange?: (
     e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
     update: "tag" | "text"
   ) => void;
-  onPromptCreate: (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  onPromptCreate?: (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  onPromptUpdate?: (e: FormEvent<HTMLFormElement>) => Promise<void>;
 }

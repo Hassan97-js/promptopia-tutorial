@@ -6,7 +6,8 @@ const PromptForm = ({
   prompt,
   submitting,
   onPromptCreate,
-  onPromptChange
+  onPromptChange,
+  onPromptUpdate
 }: PromptFormProps) => {
   return (
     <section className="flex-start | w-full max-w-full flex-col">
@@ -20,7 +21,10 @@ const PromptForm = ({
 
       <form
         className="glassmorphism | mt-10 w-full max-w-2xl flex flex-col gap-7"
-        onSubmit={onPromptCreate}>
+        onSubmit={(e) => {
+          onPromptCreate && onPromptCreate(e);
+          onPromptUpdate && onPromptUpdate(e);
+        }}>
         <label htmlFor="">
           <span className="font-semibold text-base text-slate-700">
             Your AI Prompt
@@ -29,7 +33,7 @@ const PromptForm = ({
           <textarea
             className="form-textarea"
             value={prompt.text}
-            onChange={(e) => onPromptChange(e, "text")}
+            onChange={(e) => onPromptChange && onPromptChange(e, "text")}
             placeholder="Write your prompt here..."
             required
           />
@@ -43,7 +47,7 @@ const PromptForm = ({
           <input
             className="form-input"
             value={prompt.tag}
-            onChange={(e) => onPromptChange(e, "tag")}
+            onChange={(e) => onPromptChange && onPromptChange(e, "tag")}
             placeholder="#tag"
             required
           />

@@ -7,11 +7,7 @@ import type { MongoPrompt } from "@/models/prompt";
 
 type NextParams = { params: { id: string } };
 
-export const GET = async (
-  req: NextRequest,
-  res: Response,
-  { params }: NextParams
-) => {
+export const GET = async (req: NextRequest, { params }: NextParams) => {
   try {
     await connectToDB();
 
@@ -32,26 +28,28 @@ export const GET = async (
   }
 };
 
-export const PATCH = async (
-  req: NextRequest,
-  res: Response,
-  { params }: NextParams
-) => {
+export const PATCH = async (req: NextRequest, { params }: NextParams) => {
   try {
     await connectToDB();
 
+    console.log("RUN-----------------------------------------");
+
     const { text, tag }: { text: string; tag: string } = await req.json();
 
-    const prompt = (await Prompt.findById(params.id)
-      .populate("creator", ["email", "username", "image"])
-      .lean()) satisfies HydratedDocument<MongoPrompt> | null;
+    console.log(text, tag);
+
+    const prompt = (await Prompt.findByIdAndUpdate(params.id, {
+      $set: { text, tag }
+    })) satisfies HydratedDocument<MongoPrompt> | null;
 
     if (!prompt) {
       return new Response("Prompt not found!", { status: 404 });
     }
 
-    prompt.text = text;
-    prompt.tag = tag;
+    // prompt.text = text;
+    // prompt.tag = tag;
+
+    // await prompt.save();
 
     return new Response(JSON.stringify(prompt), {
       status: 200
@@ -62,11 +60,7 @@ export const PATCH = async (
   }
 };
 
-export const DELETE = async (
-  req: NextRequest,
-  res: Response,
-  { params }: NextParams
-) => {
+export const DELETE = async (req: NextRequest, { params }: NextParams) => {
   try {
     await connectToDB();
 

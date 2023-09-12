@@ -14,8 +14,51 @@ const Profile = () => {
 
   const { data: session } = useSession();
 
-  const handlePromptEdit = (prompt: ApiPrompt) => {};
-  const handlePromptDelete = async (prompt: ApiPrompt) => {};
+  const router = useRouter();
+
+  const handlePromptEdit = (prompt: ApiPrompt) => {
+    router.push(`/update-prompt?id=${prompt._id}`);
+  };
+  const handlePromptDelete = async (prompt: ApiPrompt) => {
+    const hasConfirmed = confirm("Are you sure you want to delete this prompt?");
+
+    if (!hasConfirmed) {
+      return;
+    }
+
+    try {
+      const deletPromptHeaders = new Headers();
+      deletPromptHeaders.append("Content-Type", "application/json");
+
+      const deletePromptInit = {
+        method: "DELETE",
+        headers: deletPromptHeaders,
+        mode: "cors",
+        cache: "default",
+        body: JSON.stringify({
+          text: prompt.text,
+          tag: prompt.tag
+        })
+      } satisfies RequestInit;
+
+      const deletePromptRequest = new Request(
+        `/api/prompt/${prompt._id}`,
+        deletePromptInit
+      );
+
+      const response = await fetch(deletePromptRequest);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const newPrompts = userPrompts.filter((p) => p._id !== prompt._id);
+
+      setUserPrompts(newPrompts);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     const fetchPrompts = async () => {
