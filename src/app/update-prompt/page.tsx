@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import type { ChangeEvent, FormEvent } from "react";
-
 import { useRouter, useSearchParams } from "next/navigation";
 
 import PromptForm from "@/components/prompt-form";
+
+import type { ChangeEvent, FormEvent } from "react";
 import type { ApiPrompt, Prompt } from "@/types/prompt.types";
 
 const UpdatePrompt = () => {

@@ -5,12 +5,11 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 import UserProfile from "@/components/user-profile";
+
 import type { ApiPrompt } from "@/types/prompt.types";
 
 const Profile = () => {
   const [userPrompts, setUserPrompts] = useState<ApiPrompt[]>([]);
-
-  userPrompts.length && console.log(userPrompts);
 
   const { data: session } = useSession();
 
@@ -19,6 +18,7 @@ const Profile = () => {
   const handlePromptEdit = (prompt: ApiPrompt) => {
     router.push(`/update-prompt?id=${prompt._id}`);
   };
+
   const handlePromptDelete = async (prompt: ApiPrompt) => {
     const hasConfirmed = confirm("Are you sure you want to delete this prompt?");
 
@@ -65,11 +65,16 @@ const Profile = () => {
       const fetchPromptsHeaders = new Headers();
       fetchPromptsHeaders.append("Content-Type", "application/json");
 
+      const fetchPromptsInit = {
+        method: "GET",
+        headers: fetchPromptsHeaders,
+        mode: "cors",
+        cache: "default"
+      } satisfies RequestInit;
+
       const fetchPromptsRequest = new Request(
         `/api/users/${session?.user.id}/prompts`,
-        {
-          headers: fetchPromptsHeaders
-        }
+        fetchPromptsInit
       );
 
       const response = await fetch(fetchPromptsRequest);
@@ -86,7 +91,7 @@ const Profile = () => {
   return (
     <UserProfile
       name={session?.user.name}
-      desc="Welcome to your profile"
+      desc="Welcome"
       data={userPrompts}
       onPromptEdit={handlePromptEdit}
       onPromptDelete={handlePromptDelete}

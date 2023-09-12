@@ -18,9 +18,7 @@ const CreatePrompt = () => {
 
   const router = useRouter();
 
-  const { data: session } = useSession({
-    required: true
-  });
+  const { data: session } = useSession();
 
   const handlePromptChange = (
     e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,

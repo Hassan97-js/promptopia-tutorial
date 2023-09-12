@@ -38,11 +38,15 @@ const UserProfile = ({
   return (
     <section className="text-center">
       {name ? (
-        <h1 className="head-text | text-center">
-          <span className="blue-gradient tracking-tight">Profile</span>
-        </h1>
+        <>
+          <h1 className="head-text | text-center">
+            <span className="blue-gradient tracking-tight">Profile</span>
+          </h1>
+          <p className="desc mx-auto tracking-tight">
+            {desc} {name}
+          </p>
+        </>
       ) : null}
-      <p className="desc mx-auto tracking-tight">{desc}</p>
 
       <ProfileCardList
         prompts={data}
