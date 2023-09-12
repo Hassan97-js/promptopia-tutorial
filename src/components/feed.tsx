@@ -26,7 +26,9 @@ const Feed = () => {
 
   console.log(prompts);
 
-  const handleTagClick = (e: MouseEvent<HTMLButtonElement>, tag: string) => {};
+  const handleTagClick = (e: MouseEvent<HTMLButtonElement>, tag: string) => {
+    console.log(tag);
+  };
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {};
 

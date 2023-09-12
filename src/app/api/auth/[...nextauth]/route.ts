@@ -1,4 +1,4 @@
-import type { Document } from "mongoose";
+import type { HydratedDocument } from "mongoose";
 
 import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
@@ -34,7 +34,7 @@ export const OPTIONS: NextAuthOptions = {
     async session({ session, token }) {
       const dbUser = (await User.findOne({
         email: session.user?.email
-      })) satisfies Document<MongoUser> | null;
+      })) satisfies HydratedDocument<MongoUser> | null;
 
       if (!dbUser) {
         return session;

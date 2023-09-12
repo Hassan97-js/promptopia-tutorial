@@ -4,6 +4,6 @@ export type UserProfile = {
   name: string | null | undefined;
   desc: string;
   data: ApiPrompt[];
-  onPromptEdit: () => void;
-  onPromptDelete: () => Promise<void>;
+  onPromptEdit: (prompt: ApiPrompt) => void;
+  onPromptDelete: (prompt: ApiPrompt) => Promise<void>;
 };

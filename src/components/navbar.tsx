@@ -28,14 +28,16 @@ const Navbar = ({ user, providers }: Props) => {
   return (
     <nav className="flex-between | w-full mb-16 pt-6">
       <Link href="/" className="flex-center | flex gap-2">
-        <Image
+        {/* <Image
           className="object-contain"
           src="/assets/images/logo.svg"
           width={35}
           height={35}
           alt=""
-        />
-        <span className="logo-text">Promptopia</span>
+        /> */}
+        <span className="max-sm:hidden tracking-tight text-slate-800 font-semibold text-2xl ml-3">
+          Promptopia
+        </span>
       </Link>
 
       {/* Desktop Navigation */}

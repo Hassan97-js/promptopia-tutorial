@@ -50,7 +50,7 @@ const MobileMenu = ({
                 Create Prompt
               </Link>
               <button
-                className="btn black-btn | mt-5"
+                className="btn btn-black | mt-5"
                 type="button"
                 onClick={() => {
                   onCloseDropdown();
@@ -64,7 +64,7 @@ const MobileMenu = ({
       ) : (
         <>
           <button
-            className="btn black-btn"
+            className="btn btn-black"
             type="button"
             onClick={() => {
               onToggleDropdown;
@@ -79,7 +79,7 @@ const MobileMenu = ({
                     key={p.id}
                     type="button"
                     onClick={() => signIn(p.id)}
-                    className="btn black-btn">
+                    className="btn btn-black">
                     {p.name === "Credentials" ? "Sign in" : `Sign in With ${p.name}`}
                   </button>
                 );

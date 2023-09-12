@@ -2,12 +2,25 @@ import { UserProfile } from "@/types/profile";
 import { ProfileCardListProps } from "@/types/prompt-feed";
 import PromptCard from "./prompt-card";
 
-const ProfileCardList = ({ prompts, onTagClick }: ProfileCardListProps) => {
+const ProfileCardList = ({
+  prompts,
+  onPromptDelete,
+  onPromptEdit,
+  onTagClick
+}: ProfileCardListProps) => {
   return (
     <div className="prompt-layout | mt-16">
       {prompts.map((prompt) => {
+        const id = prompt._id;
+
         return (
-          <PromptCard key={prompt._id} prompt={prompt} onTagClick={onTagClick} />
+          <PromptCard
+            key={id}
+            prompt={prompt}
+            onTagClick={onTagClick}
+            onPromptDelete={onPromptDelete}
+            onPromptEdit={onPromptEdit}
+          />
         );
       })}
     </div>
@@ -30,7 +43,11 @@ const UserProfile = ({
       ) : null}
       <p className="desc mx-auto tracking-tight">{desc}</p>
 
-      <ProfileCardList prompts={data} onTagClick={() => {}} onPromptDelete={onPromptDelete} onPromptEdit={onPromptEdit}  />
+      <ProfileCardList
+        prompts={data}
+        onPromptDelete={onPromptDelete}
+        onPromptEdit={onPromptEdit}
+      />
     </section>
   );
 };

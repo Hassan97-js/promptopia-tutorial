@@ -80,15 +80,15 @@
 }
 
 .btn {
-  @apply py-[0.75em] px-[1.5em] text-xs sm:text-sm font-semibold font-inter;
+  @apply inline-flex items-center justify-center py-[0.75em] px-[1.5em] text-center text-xs sm:text-sm font-medium transition-all;
 }
 
-.black-btn {
-  @apply rounded-full border border-slate-900 bg-slate-900 text-white transition-all hover:bg-slate-50 hover:text-slate-900 text-center flex items-center justify-center;
+.btn-black {
+  @apply rounded-full border border-slate-900 bg-slate-900 text-white hover:bg-slate-50 hover:text-slate-900;
 }
 
-.outline-btn {
-  @apply rounded-full border border-slate-900 bg-transparent py-[0.75em] px-[1.5em] text-slate-900 transition-all hover:bg-slate-900 hover:text-white text-center text-sm font-inter font-semibold flex items-center justify-center;
+.btn-outline {
+  @apply rounded-full border border-slate-900 bg-transparent text-slate-900 hover:bg-slate-900 hover:text-white;
 }
 
 .head-text {
@@ -108,7 +108,7 @@
 }
 
 .desc {
-  @apply mt-5 text-lg text-slate-600 sm:text-xl max-w-2xl;
+  @apply mt-5 text-lg text-slate-600 sm:text-xl max-w-2xl tracking-tight;
 }
 
 .search-input {
@@ -128,7 +128,7 @@
 }
 
 .prompt-layout > * {
-  @apply flex-1 min-h-[10.625rem] max-h-[11.875rem];
+  @apply flex-1 min-h-[13.75rem];
 }
 
 .prompt-card {
@@ -150,16 +150,13 @@
 }
 
 /* Nav Component */
-.logo-text {
-  @apply max-sm:hidden font-semibold text-lg text-slate-900 tracking-wide;
-}
 
 .dropdown {
   @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[13.125rem] flex flex-col gap-2 justify-end items-end;
 }
 
 .dropdown-link {
-  @apply text-sm font-inter text-slate-700 hover:text-slate-500 font-medium;
+  @apply text-sm text-slate-700 hover:text-slate-500 font-medium;
 }
 
 /* PromptCard Component */

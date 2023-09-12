@@ -10,12 +10,12 @@ import type { ApiPrompt } from "@/types/create-prompt";
 const Profile = () => {
   const [userPrompts, setUserPrompts] = useState<ApiPrompt[]>([]);
 
-  console.log(userPrompts);
+  userPrompts.length && console.log(userPrompts);
 
   const { data: session } = useSession();
 
-  const handleProfileEdit = () => {};
-  const handleProfileDelete = async () => {};
+  const handlePromptEdit = (prompt: ApiPrompt) => {};
+  const handlePromptDelete = async (prompt: ApiPrompt) => {};
 
   useEffect(() => {
     const fetchPrompts = async () => {
@@ -23,7 +23,10 @@ const Profile = () => {
       fetchPromptsHeaders.append("Content-Type", "application/json");
 
       const fetchPromptsRequest = new Request(
-        `/api/users/${session?.user.id}/prompts`
+        `/api/users/${session?.user.id}/prompts`,
+        {
+          headers: fetchPromptsHeaders
+        }
       );
 
       const response = await fetch(fetchPromptsRequest);
@@ -42,8 +45,8 @@ const Profile = () => {
       name={session?.user.name}
       desc="Welcome to your profile"
       data={userPrompts}
-      onPromptEdit={handleProfileEdit}
-      onPromptDelete={handleProfileDelete}
+      onPromptEdit={handlePromptEdit}
+      onPromptDelete={handlePromptDelete}
     />
   );
 };

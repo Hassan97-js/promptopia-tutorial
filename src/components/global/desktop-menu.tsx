@@ -31,21 +31,21 @@ const DesktopMenu = ({ providers, user }: Props) => {
                 onClick={() => {
                   signIn(p.id);
                 }}
-                className="btn black-btn">
+                className="btn btn-black">
                 {p.name === "Credentials" ? "Sign in" : `Sign in With ${p.name}`}
               </button>
             );
           })
         ) : (
           <>
-            <Link href="/create-prompt" className="btn black-btn">
+            <Link href="/create-prompt" className="btn btn-black">
               Create Prompt
             </Link>
 
             <button
               type="button"
               onClick={() => signOut({ callbackUrl: "/" })}
-              className="outline-btn">
+              className="btn btn-outline">
               Sign Out
             </button>
 

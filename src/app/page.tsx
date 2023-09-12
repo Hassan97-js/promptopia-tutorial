@@ -9,7 +9,7 @@ const Home = async () => {
 
   return (
     <section className="w-full flex-center flex-col">
-      <h1 className="head-text | text-center ">
+      <h1 className="head-text | text-center tracking-tighter">
         <span className="block">Discover & Share</span>
         <span className="orange-gradient | text-center">AI-Powered Prompts</span>
       </h1>
@@ -18,10 +18,7 @@ const Home = async () => {
         create and share creative prompts
       </p>
 
-      {/* Feed here */}
-      <>
-        {session ? <Feed /> : <h1 className="text-5xl">You are not logged in!</h1>}
-      </>
+      {session ? <Feed /> : <h1 className="text-5xl">You are not logged in!</h1>}
     </section>
   );
 };
