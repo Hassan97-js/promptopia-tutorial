@@ -11,9 +11,9 @@ const PromptForm = ({
   return (
     <section className="flex-start | w-full max-w-full flex-col">
       <h1 className="head-text | text-left">
-        <span className="blue-gradient">{actionType} Post</span>
+        <span className="blue-gradient tracking-tight">{actionType} Prompt</span>
       </h1>
-      <p className="desc | text-left max-w-md">
+      <p className="desc | text-left max-w-md tracking-tight">
         {actionType} and share amazing prompts with the world, and let your
         imagination run wild with any AI-powered platform.
       </p>
@@ -54,7 +54,7 @@ const PromptForm = ({
             Cancel
           </Link>
           <button
-            className="px-[2em] py-[0.75em] text-sm font-semibold bg-blue-800 hover:bg-blue-700 transition-colors rounded-full text-white leading-none"
+            className="px-[2em] py-[0.75em] text-sm font-medium bg-blue-800 hover:bg-blue-700 transition-colors rounded-full text-white leading-none tracking-wider"
             type="submit"
             disabled={submitting}>
             {submitting ? `${actionType}ing...` : actionType}

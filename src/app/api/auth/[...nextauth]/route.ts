@@ -41,7 +41,7 @@ export const OPTIONS: NextAuthOptions = {
       }
 
       // session.accessToken = token.accessToken;
-      // session.user.id = dbUser.id;
+      session.user.id = dbUser.id;
 
       return session;
     },

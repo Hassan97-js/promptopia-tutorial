@@ -6,6 +6,11 @@ export interface PromptCardListProps {
   onTagClick: (e: MouseEvent<HTMLButtonElement>, tag: string) => void;
 }
 
+export interface ProfileCardListProps {
+  prompts: ApiPrompt[];
+  onTagClick: (e: MouseEvent<HTMLButtonElement>, tag: string) => void;
+}
+
 export interface PromptCardProps {
   prompt: ApiPrompt;
   onTagClick: (e: MouseEvent<HTMLButtonElement>, tag: string) => void;
