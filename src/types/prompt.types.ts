@@ -44,7 +44,7 @@ export interface PromptCardListProps {
 
 export interface ProfileCardListProps {
   prompts: ApiPrompt[];
-  onPromptEdit: (prompt: ApiPrompt) => void;
-  onPromptDelete: (prompt: ApiPrompt) => Promise<void>;
+  onPromptEdit?: (prompt: ApiPrompt) => void;
+  onPromptDelete?: (prompt: ApiPrompt) => Promise<void>;
   onTagClick?: (e: MouseEvent<HTMLButtonElement>, tag: string) => void;
 }

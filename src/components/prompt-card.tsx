@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import type { PromptCardProps } from "@/types/prompt.types";
 
@@ -15,7 +15,12 @@ const PromptCard = ({
 
   const { data: session } = useSession();
 
+  const router = useRouter();
   const pathName = usePathname();
+
+  const handleCardClick = () => {
+    router.push(`/profile/${prompt.creator._id}?name=${prompt.creator.username}`);
+  };
 
   const handlePromptCopy = async () => {
     try {
@@ -31,7 +36,7 @@ const PromptCard = ({
   };
 
   return (
-    <div className="prompt-card | relative">
+    <div role="button" className="prompt-card | relative" onClick={handleCardClick}>
       <button className="flex flex-1 justify-between items-center gap-5 px-6">
         <div className="flex gap-4">
           <Image

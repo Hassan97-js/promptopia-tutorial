@@ -13,6 +13,8 @@ const Profile = () => {
 
   const { data: session } = useSession();
 
+  console.log(session?.user.id);
+
   const router = useRouter();
 
   const handlePromptEdit = (prompt: ApiPrompt) => {

@@ -25,8 +25,8 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, account, profile }) {
       // Persist the OAuth access_token and or the user id to the token right after signin
       if (account) {
-        token.accessToken = account.access_token;
-        // token.id = profile?.id;
+        // token.accessToken = account.access_token;
+        // token.id = dbUser.id;
       }
 
       return token;
@@ -39,18 +39,21 @@ export const authOptions: NextAuthOptions = {
       if (!dbUser) {
         return session;
       }
+      // console.log(token.id, "In session callback");
+
+      // console.log(dbUser);
 
       // session.accessToken = token.accessToken;
       session.user.id = dbUser.id;
 
       return session;
     },
-    async signIn({ profile, user }) {
+    async signIn({ profile, user, account }) {
       try {
         await connectToDB();
 
-        if (!profile?.email_verified) {
-          throw Error("Sorry, your email is not verified by the provider!");
+        if (account?.provider === "google" && !profile?.email_verified) {
+          throw Error("Sorry, your email is not verified by the Google provider!");
         }
 
         const userExists = await User.findOne({
