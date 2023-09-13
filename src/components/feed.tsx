@@ -8,6 +8,7 @@ import { filterArray } from "@/utils/filter-array";
 
 import type { ChangeEvent, MouseEvent } from "react";
 import type { ApiPrompt, PromptCardListProps } from "@/types/prompt.types";
+import type { TimeoutType } from "@/types/nodejs.types";
 
 const PromptCardList = ({ prompts, onTagClick }: PromptCardListProps) => {
   return (
@@ -25,9 +26,7 @@ const Feed = () => {
   const [prompts, setPrompts] = useState<ApiPrompt[]>([]);
 
   const [searchText, setSearchText] = useState("");
-  const [searchTimeout, setSearchTimeout] = useState<
-    string | number | NodeJS.Timeout | undefined
-  >();
+  const [searchTimeout, setSearchTimeout] = useState<TimeoutType>();
   const [searchResults, setSearchResults] = useState<ApiPrompt[]>([]);
 
   useEffect(() => {
@@ -47,12 +46,23 @@ const Feed = () => {
   }, []);
 
   const handleTagClick = (e: MouseEvent<HTMLButtonElement>, tag: string) => {
-    console.log(tag);
+    setSearchText(tag);
+
+    const newPrompts = filterArray<ApiPrompt>(prompts, (p) => {
+      return p.tag.trim().toLowerCase().includes(tag.trim().toLowerCase());
+    });
+
+    setSearchResults(newPrompts);
+  };
+
+  const handleSearchClear = () => {
+    setSearchText("");
+    setSearchResults([]);
   };
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     clearTimeout(searchTimeout);
-    
+
     setSearchText(e.target.value);
 
     // debounce
@@ -80,15 +90,23 @@ const Feed = () => {
 
   return (
     <section className="feed | container">
-      <form className="flex-center | relative w-full">
-        <input
-          className="search-input | peer"
-          type="text"
-          value={searchText}
-          onChange={handleSearchChange}
-          placeholder="Search for a tag or a username"
-          required
-        />
+      <form onSubmit={(e) => e.preventDefault()} className="relative w-full">
+        <div className="relative max-w-3xl mx-auto">
+          <input
+            className="search-input"
+            type="search"
+            value={searchText}
+            onChange={handleSearchChange}
+            placeholder="Search for a tag or a username"
+            required
+          />
+          <button
+            type="button"
+            className="absolute right-0 top-[14px] pr-3 text-xs font-bold text-slate-500"
+            onClick={handleSearchClear}>
+            X
+          </button>
+        </div>
       </form>
 
       <PromptCardList prompts={promptsToDisplay} onTagClick={handleTagClick} />
