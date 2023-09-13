@@ -1,7 +1,9 @@
 import { NextRequest } from "next/server";
-import { connectToDB } from "@/utils/database";
 
 import Prompt from "@/models/prompt";
+
+import { connectToDB } from "@/utils/database";
+
 import type { HydratedDocument } from "mongoose";
 import type { MongoPrompt } from "@/models/prompt";
 
